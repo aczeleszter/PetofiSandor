@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petőfi Sándor Kvíz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Petőfi Sándor Kvíz</h1>
+
+    <div class="question">
+        <label>Melyik szegedi épületben őrzik Petőfi Sándor eredeti kéziratait?</label><br>
+        <input type="radio" name="q1" value="Szegedi Tudományegyetem"> Szegedi Tudományegyetem<br>
+        <input type="radio" name="q1" value="Radnóti Miklós Kísérleti Gimnázium"> Radnóti Miklós Kísérleti Gimnázium<br>
+        <input type="radio" name="q1" value="Móra Ferenc Múzeum"> Móra Ferenc Múzeum<br>
+        <input type="radio" name="q1" value="Petőfi Szülőház és Emlékmúzeum"> Petőfi Szülőház és Emlékmúzeum<br>
+    </div>
+
+    <button onclick="checkAnswer()">Ellenőrzés</button>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        function checkAnswer() {
+            const correctAnswer = "Móra Ferenc Múzeum";
+            const radios = document.getElementsByName('q1');
+            let selectedAnswer;
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedAnswer = radio.value;
+                    break;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            if (selectedAnswer === undefined) {
+                resultDiv.innerHTML = "Kérlek, válassz egy választ!";
+                resultDiv.className = "result incorrect";
+                return;
+            }
+
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = "Helyes válasz!";
+                resultDiv.className = "result correct";
+            } else {
+                resultDiv.innerHTML = `Helytelen válasz! A helyes válasz: ${correctAnswer}`;
+                resultDiv.className = "result incorrect";
+            }
+        }
+    </script>
+
+</body>
+</html>
